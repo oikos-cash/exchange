@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-233 363 300 300" style="enable-background:new -233 363 300 300;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#512DA8;}
+	.st1{fill:#FFFFFF;}
+</style>
+<g id="DEFI_1_">
+	<g id="Main">
+		<g>
+			<circle class="st0" cx="-83" cy="513" r="150"/>
+		</g>
+		<g id="Logo">
+			<g id="XMLID_1_">
+				<polygon class="st1" points="-57.5,464.5 -67.5,464.5 -67.5,561.5 -57.5,561.5 				"/>
+			</g>
+			<g id="XMLID_2_">
+				<path class="st1" d="M-87.9,474.5v77.1H-165v-77.1L-87.9,474.5 M-77.9,464.5H-175v97.1h97.1V464.5L-77.9,464.5z"/>
+			</g>
+		</g>
+	</g>
+	<g id="Currency">
+		<path id="DEFI" class="st1" d="M-10.8,549.5c0-3.5-0.7-6.5-2.2-9.2c-1.5-2.7-3.5-4.7-6.1-6.1s-5.6-2.2-9-2.2c-3.4,0-6.3,0.7-9,2.2
+			s-4.7,3.5-6.1,6.1c-1.5,2.7-2.2,5.7-2.2,9.2l0,0v12h34.6V549.5z M-16.7,549.4v4.6h-22.8v-4.6c0-3.1,1-5.5,3.1-7.2
+			c2.1-1.7,4.8-2.6,8.3-2.6c3.4,0,6.2,0.9,8.3,2.6C-17.8,543.9-16.7,546.3-16.7,549.4L-16.7,549.4z M-11.3,503.7h-6.4V520h-8v-12.8
+			h-6.1V520h-7.8v-15.7h-6.4v23.1h34.6V503.7z M-10.8,491.7h-14v-12.6h-6.1v12.6H-39v-15.4h-6.4v22.8h34.6V491.7z M-10.8,464.5
+			h-34.6v7.6h34.6V464.5z"/>
+	</g>
+</g>
+<g id="Grid">
+</g>
+</svg>
