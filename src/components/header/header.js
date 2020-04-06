@@ -54,7 +54,8 @@ class Header extends Component {
   }
 
   onPageButtonClick(screen) {
-    return () => {
+    return e => {
+      e.preventDefault();
       const { changeScreen } = this.props;
       changeScreen(screen);
     };
@@ -79,7 +80,7 @@ class Header extends Component {
         return 'RINKEBY';
       case '42':
         return 'KOVAN';*/
-        case '2':
+      case '2':
         return 'SHASTA';
       default:
         return 'MAINNET';
@@ -115,7 +116,9 @@ class Header extends Component {
     return (
       <div className={styles.header}>
         <div className={styles.logoWrapper}>
-          <img height="36" alt="logo" src="/images/oikos-logo.svg" />
+          <a href="/" onClick={this.onPageButtonClick('exchange')}>
+            <img height="36" alt="logo" src="/images/oikos-logo.svg" />
+          </a>
           <button
             type="button"
             onClick={this.onEnvButtonClick}
