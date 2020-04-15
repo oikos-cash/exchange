@@ -111,7 +111,7 @@ class TransactionStatusPopup extends Component {
     window.open(
       `https://${
         networkName ? networkName + '.' : ''
-      }shasta.tronscan.io/#/transaction/${transactionHash}`
+      }tronscan.io/#/transaction/${transactionHash}`
     );
   }
 
