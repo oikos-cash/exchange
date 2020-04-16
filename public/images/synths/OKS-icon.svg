@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="40px"
+   height="40px"
+   viewBox="0 0 40 40"
+   version="1.1"
+   id="SVGRoot"
+   inkscape:version="0.92.4 (unknown)"
+   sodipodi:docname="OKS.svg">
+  <defs
+     id="defs7582" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="6.4"
+     inkscape:cx="20"
+     inkscape:cy="20"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3773"
+     inkscape:window-height="1545"
+     inkscape:window-x="67"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:grid-bbox="true" />
+  <metadata
+     id="metadata7585">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       transform="matrix(0.20512821,0,0,0.20512821,37.95955,-86.615863)"
+       id="g893">
+      <circle
+         class="st0"
+         cx="-87.55278"
+         cy="519.75232"
+         r="97.5"
+         id="circle891"
+         style="fill:#131722;stroke-width:0.65000051" />
+    </g>
+    <g
+       id="Logo"
+       transform="matrix(0.20512821,0,0,0.20512821,45.04278,-86.45143)">
+      <g
+         id="XMLID_1_"
+         transform="matrix(0.94978724,0,0,0.94978724,-11.587025,31.099608)">
+        <polygon
+           class="st1"
+           points="-57.5,561.5 -57.5,464.5 -67.5,464.5 -67.5,561.5 "
+           id="polygon895"
+           style="fill:#ffffff" />
+      </g>
+      <g
+         id="XMLID_2_"
+         transform="matrix(0.94978724,0,0,0.94978724,-11.587025,31.099608)">
+        <path
+           class="st1"
+           d="m -87.9,474.5 v 77.1 H -165 v -77.1 h 77.1 m 10,-10 H -175 v 97.1 h 97.1 z"
+           id="path898"
+           inkscape:connector-curvature="0"
+           style="fill:#ffffff" />
+      </g>
+    </g>
+  </g>
+</svg>
