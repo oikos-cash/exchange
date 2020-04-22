@@ -41,7 +41,7 @@ class RateList extends Component {
     if (synthToExchange.sign === '₿') synthToExchange.sign = '฿';
 
     const filteredSynths = availableSynths.filter(synth => {
-      return synth.name !== synthToExchange.name && synth.name !== 'XDR';
+      return synth.name !== synthToExchange.name && synth.name !== 'ODR';
     });
 
     return filteredSynths.map((synth, i) => {

@@ -168,7 +168,7 @@ class Root extends Component {
     // const { networkId } = await getEthereumNetwork();
     const { networkId } = await getTronNetwork();
     synthetixJsTools.setContractSettings({ networkId });
-    // We remove all the synths which aren't considered as assets (eg: XDR)
+    // We remove all the synths which aren't considered as assets (eg: ODR)
     const allSynths = synthetixJsTools.synthetixJs.contractSettings.synths.filter(
       synth => synth.asset
     );

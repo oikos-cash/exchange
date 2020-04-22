@@ -52,7 +52,7 @@ class Transactions extends Component {
 
     const filteredTransactions = transactions
       .sort(compareBlocks)
-      .filter(transaction => !transaction.exchangeToCurrency.includes('XDR'));
+      .filter(transaction => !transaction.exchangeToCurrency.includes('ODR'));
 
     let myTransactions;
     if (currentWalletInfo.selectedWallet) {
