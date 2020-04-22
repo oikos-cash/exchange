@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import styles from './wallet-address-box.module.scss';
 
 const ETHERSCAN_URLS = {
-  1: 'https://shasta.tronscan.io/#/address/',
-  2: 'https://shasta.tronscan.io/#/address/', 
+  1: 'https://tronscan.io/#/address/',
+  2: 'https://shasta.tronscan.io/#/address/',
 };
 
 const shortenAddress = (address, network) => {

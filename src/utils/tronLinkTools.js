@@ -1,13 +1,13 @@
 import throttle from 'lodash/throttle';
 
 export const SUPPORTED_NETWORKS = {
-  // 1: 'MAINNET',
+  1: 'mainnet',
   2: 'shasta',
 };
 
 export async function getTronNetwork() {
   // TODO: @kev change shasta to mainnet
-  const defaultNetwork = { name: 'shasta', networkId: 2 };
+  const defaultNetwork = { name: 'mainnet', networkId: '1' };
 
   if (!window.tronWeb) {
     return defaultNetwork;
