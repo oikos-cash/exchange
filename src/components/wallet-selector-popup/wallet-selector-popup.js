@@ -18,7 +18,7 @@ import synthetixJsTools from '../../synthetixJsTool';
 import styles from './wallet-selector-popup.module.scss';
 
 // const WALLET_TYPES = ['TronLink', 'Metamask', 'Trezor', 'Ledger'];
-const WALLET_TYPES = ['TronLink', 'Trezor', 'Ledger'];
+const WALLET_TYPES = ['TronLink'];
 
 class WalletSelectorPopup extends Component {
   constructor() {
