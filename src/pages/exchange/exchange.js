@@ -29,8 +29,7 @@ class Exchange extends Component {
   getSymbol() {
     const { synthToBuy, synthToExchange } = this.props;
     if (!synthToBuy || !synthToExchange) return;
-    console.log(synthToBuy.category, synthToExchange.category)
-    if (
+     if (
       synthToBuy.category === 'commodity' //||
       //synthToBuy.category === 'crypto'
     ) {
@@ -41,10 +40,16 @@ class Exchange extends Component {
       synthToExchange.category === 'forex'
     ) {
       return synthToBuy.name.substring(1) + synthToExchange.name.substring(1);
+    } else   if (
+      synthToBuy.category === 'crypto' &&
+      synthToExchange.category === 'crypto'
+    ) {
+      console.log(synthToBuy.name, synthToExchange.name)
+      if (synthToBuy.name === "sBTC" ) {
+        return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
+      }  
     } else {
       return synthToBuy.name.substring(1) + synthToExchange.name.substring(1);
-
-
     }
   }
 
