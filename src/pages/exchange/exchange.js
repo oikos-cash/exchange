@@ -29,13 +29,22 @@ class Exchange extends Component {
   getSymbol() {
     const { synthToBuy, synthToExchange } = this.props;
     if (!synthToBuy || !synthToExchange) return;
+    console.log(synthToBuy.category, synthToExchange.category)
     if (
-      synthToBuy.category == 'commodity' ||
-      synthToBuy.category === 'crypto'
+      synthToBuy.category === 'commodity' //||
+      //synthToBuy.category === 'crypto'
+    ) {
+     // return synthToBuy.name.substring(1) + synthToExchange.name.substring(1);
+     return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
+    } else   if (
+      synthToBuy.category === 'crypto' &&
+      synthToExchange.category === 'forex'
     ) {
       return synthToBuy.name.substring(1) + synthToExchange.name.substring(1);
-    } else
-      return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
+    } else {
+
+
+    }
   }
 
   renderBasicModeContent() {
@@ -54,6 +63,7 @@ class Exchange extends Component {
   renderProModeContent() {
     const { synthToBuy, synthToExchange } = this.props;
     const symbol = this.getSymbol();
+    console.log(symbol)
     return (
       <div className={styles.exchangeLayoutColumn}>
         <div className={styles.exchangeLayoutRow}>
