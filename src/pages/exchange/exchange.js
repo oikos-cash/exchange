@@ -42,6 +42,7 @@ class Exchange extends Component {
     ) {
       return synthToBuy.name.substring(1) + synthToExchange.name.substring(1);
     } else {
+      return synthToBuy.name.substring(1) + synthToExchange.name.substring(1);
 
 
     }
