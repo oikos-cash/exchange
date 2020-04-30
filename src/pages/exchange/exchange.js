@@ -44,8 +44,8 @@ class Exchange extends Component {
       synthToBuy.category === 'crypto' &&
       synthToExchange.category === 'crypto'
     ) {
-      console.log(synthToBuy.name, synthToExchange.name)
-      if (synthToBuy.name === "sBTC" ) {
+      //console.log(synthToBuy.name, synthToExchange.name)
+      if (synthToBuy.name === "sBTC" || synthToBuy.name === "iBTC" ) {
         return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
       }  
     } else {
