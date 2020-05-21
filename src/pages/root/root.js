@@ -21,6 +21,7 @@ import DepotPopup from '../../components/depot-popup';
 import FeedbackPopup from '../../components/feedback-popup';
 import WalkthroughPopup from '../../components/walkthrough-popup';
 import LoadingScreen from '../../components/loading-screen';
+import Announcement from './Announcement';
 
 import {
   getCurrentScreen,
@@ -257,6 +258,7 @@ class Root extends Component {
     const overlayIsVisible = this.hasOpenPopup();
     return (
       <div className={styles.root}>
+        <Announcement />
         <Overlay isVisible={overlayIsVisible} />
         {!isOnMaintenance ? (
           <div className={styles.rootInner}>
