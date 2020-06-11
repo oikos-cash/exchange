@@ -28,29 +28,62 @@ import styles from './exchange.module.scss';
 class Exchange extends Component {
   getSymbol() {
     const { synthToBuy, synthToExchange } = this.props;
+
     if (!synthToBuy || !synthToExchange) return;
-     if (
-      synthToBuy.category === 'commodity' //||
-      //synthToBuy.category === 'crypto'
-    ) {
-     // return synthToBuy.name.substring(1) + synthToExchange.name.substring(1);
-     return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
-    } else   if (
+    //console.log(synthToBuy.name, synthToBuy.category , synthToExchange.name, synthToExchange.category);
+
+    if (synthToBuy.category === 'commodity') {
+      return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
+    } else if (
       synthToBuy.category === 'crypto' &&
       synthToExchange.category === 'forex'
     ) {
-      return synthToBuy.name.substring(1) + synthToExchange.name.substring(1);
-    } else   if (
-      synthToBuy.category === 'crypto' &&
-      synthToExchange.category === 'crypto'
+      return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
+    } else if (
+      synthToBuy.category == 'crypto' &&
+      synthToExchange.category == 'crypto'
     ) {
-      //console.log(synthToBuy.name, synthToExchange.name)
-      if (synthToBuy.name === "sBTC" || synthToBuy.name === "iBTC" ) {
+      if (synthToBuy.name == 'sBTC' && synthToExchange.name == 'sTRX') {
         return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
-      }  
-    } else {
-      return synthToBuy.name.substring(1) + synthToExchange.name.substring(1);
+      }
+      if (synthToBuy.name == 'sETH' && synthToExchange.name == 'sTRX') {
+        return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
+      }
+      if (
+        (synthToBuy.name == 'sTRX' && synthToExchange.name == 'iTRX') ||
+        (synthToBuy.name == 'iTRX' && synthToExchange.name == 'sTRX') ||
+        (synthToBuy.name == 'sTRX' && synthToExchange.name == 'sTRX')
+      ) {
+        return 'TRX' + 'USD';
+      }
+      if (synthToBuy.name == 'iBTC' && synthToExchange.name == 'sTRX') {
+        return 'TRX' + 'BTC';
+      }
+      if (synthToBuy.name == 'iETH' && synthToExchange.name == 'sTRX') {
+        return 'TRX' + 'ETH';
+      }
+      if (synthToBuy.name == 'sTRX' && synthToExchange.name == 'iTRX') {
+        return 'TRX' + 'USD';
+      }
+      if (synthToBuy.name == 'sBTC' && synthToExchange.name == 'sETH') {
+        return 'TRX' + 'ETH';
+      }
+      if (synthToBuy.name == 'iBTC' && synthToExchange.name == 'sETH') {
+        return 'ETH' + 'BTC';
+      }
+      if (
+        (synthToBuy.name == 'sBTC' && synthToExchange.name == 'iBTC') ||
+        (synthToExchange.name == 'sBTC' && synthToBuy.name == 'iBTC')
+      ) {
+        return 'BTC' + 'USD';
+      }
+    } else if (
+      synthToBuy.category == 'forex' &&
+      synthToExchange.category == 'crypto'
+    ) {
+      return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
     }
+    return synthToBuy.name.substring(1) + synthToExchange.name.substring(1);
   }
 
   renderBasicModeContent() {
@@ -69,7 +102,7 @@ class Exchange extends Component {
   renderProModeContent() {
     const { synthToBuy, synthToExchange } = this.props;
     const symbol = this.getSymbol();
-    console.log(symbol)
+    console.log(symbol);
     return (
       <div className={styles.exchangeLayoutColumn}>
         <div className={styles.exchangeLayoutRow}>
@@ -85,9 +118,7 @@ class Exchange extends Component {
             />
           </div>
           <div
-            className={`${styles.exchangeLayoutColumn} ${
-              styles.exchangeLayoutColumnSmall
-            } ${styles.exchangeLayoutColumnRight}`}
+            className={`${styles.exchangeLayoutColumn} ${styles.exchangeLayoutColumnSmall} ${styles.exchangeLayoutColumnRight}`}
           >
             {synthToBuy && synthToExchange ? (
               <Container fullHeight={true}>
@@ -108,9 +139,7 @@ class Exchange extends Component {
       <div className={styles.exchange}>
         <div className={styles.exchangeLayout}>
           <div
-            className={`${styles.exchangeLayoutColumn} ${
-              styles.exchangeLayoutColumnSmall
-            } ${styles.exchangeLayoutColumnLeft}`}
+            className={`${styles.exchangeLayoutColumn} ${styles.exchangeLayoutColumnSmall} ${styles.exchangeLayoutColumnLeft}`}
           >
             <Container fullHeight={true}>
               <BalanceChecker />
@@ -159,7 +188,4 @@ Exchange.propTypes = {
   currentExchangeMode: PropTypes.string.isRequired,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Exchange);
+export default connect(mapStateToProps, mapDispatchToProps)(Exchange);
