@@ -258,7 +258,7 @@ class Root extends Component {
     const overlayIsVisible = this.hasOpenPopup();
     return (
       <div className={styles.root}>
- 
+        <Announcement />
         <Overlay isVisible={overlayIsVisible} />
         {!isOnMaintenance ? (
           <div className={styles.rootInner}>
