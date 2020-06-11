@@ -30,60 +30,51 @@ class Exchange extends Component {
     const { synthToBuy, synthToExchange } = this.props;
 
     if (!synthToBuy || !synthToExchange) return;
-    //console.log(synthToBuy.name, synthToBuy.category , synthToExchange.name, synthToExchange.category);
+    console.log(synthToBuy.name, synthToBuy.category , synthToExchange.name, synthToExchange.category);
 
-    if (synthToBuy.category === 'commodity') {
+    if ( synthToBuy.category === 'commodity' ){
       return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
-    } else if (
-      synthToBuy.category === 'crypto' &&
-      synthToExchange.category === 'forex'
-    ) {
-      return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
-    } else if (
-      synthToBuy.category == 'crypto' &&
-      synthToExchange.category == 'crypto'
-    ) {
-      if (synthToBuy.name == 'sBTC' && synthToExchange.name == 'sTRX') {
-        return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
+
+    } else if (synthToBuy.category === 'crypto' && synthToExchange.category === 'forex'  ) {
+ 
+      return   synthToBuy.name.substring(1) + synthToExchange.name.substring(1) 
+
+    } else if (synthToBuy.category === 'forex' && synthToExchange.category === 'crypto'  ) {
+ 
+      return   synthToExchange.name.substring(1) + synthToBuy.name.substring(1) 
+
+    } 
+    else  if (synthToBuy.category == "crypto" && synthToExchange.category == "crypto") {
+      
+      if (synthToBuy.name == "sBTC" && synthToExchange.name == "sTRX") {
+        return synthToExchange.name.substring(1) + synthToBuy.name.substring(1)
       }
-      if (synthToBuy.name == 'sETH' && synthToExchange.name == 'sTRX') {
-        return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
+      if (synthToBuy.name == "sETH" && synthToExchange.name == "sTRX") {
+        return synthToExchange.name.substring(1) + synthToBuy.name.substring(1)
+      }   
+      if (synthToBuy.name == "sTRX" && synthToExchange.name == "iTRX" || synthToBuy.name == "iTRX" && synthToExchange.name == "sTRX" || synthToBuy.name == "sTRX" && synthToExchange.name == "sTRX") {
+        return"TRX"+"USD"
+      }       
+      if (synthToBuy.name == "iBTC" &&  synthToExchange.name == "sTRX") {
+        return"TRX"+"BTC"
+      }            
+      if (synthToBuy.name == "iETH" && synthToExchange.name == "sTRX"){
+        return"TRX"+"ETH"
       }
-      if (
-        (synthToBuy.name == 'sTRX' && synthToExchange.name == 'iTRX') ||
-        (synthToBuy.name == 'iTRX' && synthToExchange.name == 'sTRX') ||
-        (synthToBuy.name == 'sTRX' && synthToExchange.name == 'sTRX')
-      ) {
-        return 'TRX' + 'USD';
+      if (synthToBuy.name == "sTRX"  && synthToExchange.name == "iTRX"){
+        return"TRX"+"USD"
+      }      
+      if (synthToBuy.name == "sBTC" && synthToExchange.name =="sETH") {
+        return "TRX"+"ETH"
       }
-      if (synthToBuy.name == 'iBTC' && synthToExchange.name == 'sTRX') {
-        return 'TRX' + 'BTC';
-      }
-      if (synthToBuy.name == 'iETH' && synthToExchange.name == 'sTRX') {
-        return 'TRX' + 'ETH';
-      }
-      if (synthToBuy.name == 'sTRX' && synthToExchange.name == 'iTRX') {
-        return 'TRX' + 'USD';
-      }
-      if (synthToBuy.name == 'sBTC' && synthToExchange.name == 'sETH') {
-        return 'TRX' + 'ETH';
-      }
-      if (synthToBuy.name == 'iBTC' && synthToExchange.name == 'sETH') {
-        return 'ETH' + 'BTC';
-      }
-      if (
-        (synthToBuy.name == 'sBTC' && synthToExchange.name == 'iBTC') ||
-        (synthToExchange.name == 'sBTC' && synthToBuy.name == 'iBTC')
-      ) {
-        return 'BTC' + 'USD';
-      }
-    } else if (
-      synthToBuy.category == 'forex' &&
-      synthToExchange.category == 'crypto'
-    ) {
-      return synthToExchange.name.substring(1) + synthToBuy.name.substring(1);
-    }
-    return synthToBuy.name.substring(1) + synthToExchange.name.substring(1);
+      if (synthToBuy.name == "iBTC" && synthToExchange.name =="sETH") {
+        return "ETH"+"BTC"
+      }      
+      if (synthToBuy.name == "sBTC" && synthToExchange.name =="iBTC" || synthToExchange.name == "sBTC" && synthToBuy.name =="iBTC") {
+        return "BTC"+"USD"
+      }         
+    } 
+    return  synthToBuy.name.substring(1) + synthToExchange.name.substring(1)
   }
 
   renderBasicModeContent() {
