@@ -4,9 +4,7 @@ import styles from './root.module.scss';
 export default () => {
   return (
     <div className={styles.announcement}>
-      <a href="https://hoo.com/labs/detail/oks2">
-        Announcement: Oikos IEO on Hoo.com from Jun 12 to Jun 14 🚀
-      </a>
+        Oikos IEO on Hoo.com sold out. Thank you to all participants ❤️. Stay tuned for listing announcement 🚀
       <div className="x"></div>
     </div>
   );
