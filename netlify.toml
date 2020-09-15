@@ -7,7 +7,7 @@
   NODE_VERSION = "11.15.0"
   # RUBY_VERSION = "2.6.2"
   REACT_APP_CONTEXT = "production"
-	GRAPH_API_URL="https://api-shasta.oikos.exchange"
+	GRAPH_API_URL="https://api.oikos.exchange"
 
 [context.branch-deploy.environment]
   REACT_APP_CONTEXT = "staging"
