@@ -18,7 +18,7 @@ import styles from './transactions-table.module.scss';
 const ETHERSCAN_URLS = {
   1: 'https://tronscan.io/#/transaction/',
   2: 'https://shasta.tronscan.io/#/transaction/',
-  42: 'https://nile.tronscan.io/#/transaction/',
+  3: 'https://nile.tronscan.io/#/transaction/',
 };
 
 const hexifyAddress = address => window.tronWeb.address.toHex(address);
@@ -45,6 +45,7 @@ class Transactions extends Component {
 
   async refreshData() {
     const { currentWalletInfo } = this.props;
+    
     const transactions = await getTransactions(
       currentWalletInfo && currentWalletInfo.networkId
     );
@@ -64,6 +65,7 @@ class Transactions extends Component {
     }
 
     console.log('myTransactions', myTransactions);
+    console.log({ allTransactions: filteredTransactions });
 
     this.setState({
       allTransactions: filteredTransactions,

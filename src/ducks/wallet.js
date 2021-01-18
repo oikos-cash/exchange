@@ -31,7 +31,7 @@ const defaultState = {
   unlocked: false,
   selectedWallet: null,
   walletSelectorIndex: 0,
-  networkId: '1',
+  networkId: '3',
   balances: null,
   transactionSpeed: 'averageAllowed',
   gasAndSpeedInfo: null,
