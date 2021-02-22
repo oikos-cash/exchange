@@ -1,4 +1,4 @@
-import { SynthetixJs } from 'synthetix-js';
+import { SynthetixJs } from '@oikos/oikos-js-bsc';
 let SynthetixJsTools = {
   initialized: false,
   signers: SynthetixJs.signers,

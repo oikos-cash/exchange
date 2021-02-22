@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -229,6 +230,15 @@ class TradingWidget extends Component {
 		);
 	}
 
+	isEmpty(obj) {
+		for(var prop in obj) {
+		  if(obj.hasOwnProperty(prop)) {
+			return false;
+		  }
+		}
+		return JSON.stringify(obj) === JSON.stringify({});
+	  }
+	
 	renderPairRateAndBalance() {
 		const {
 			synthToBuy,
@@ -245,37 +255,45 @@ class TradingWidget extends Component {
 			(synthToExchange.name === 'sKRW' || synthToExchange.name === 'sJPY')
 				? '0,0.00000000'
 				: '0,0.00000';
-		const rate = exchangeRates[synthToBuy.name][synthToExchange.name];
-		let usdRate;
-		if (![synthToBuy.name, synthToExchange.name].includes('sUSD')) {
-			usdRate = exchangeRates[synthToBuy.name]['sUSD'];
-		}
-		return (
-			<div className={styles.pairRateAndBalanceRow}>
-				<div className={styles.pairRate}>
-					<div className={styles.pairRateName}>{`${synthToBuy.name}/${synthToExchange.name}:`}</div>
-					{synthToExchange.sign}
-					{numbro(rate).format(precision)}
-				</div>
-				{usdRate ? (
+		
+		if (!this.isEmpty(exchangeRates)) {
+			const rate = 1; //exchangeRates[synthToBuy.name][synthToExchange.name];
+			let usdRate;
+			if (![synthToBuy.name, synthToExchange.name].includes('sUSD')) {
+				console.log(exchangeRates[synthToBuy.name]);
+				usdRate = 1 ; //exchangeRates[synthToBuy.name]['sUSD'];
+			}
+			return (
+				<div className={styles.pairRateAndBalanceRow}>
 					<div className={styles.pairRate}>
-						<div className={styles.pairRateName}>{`${synthToBuy.name}/sUSD:`}</div>$
-						{numbro(usdRate).format(precision)}
-					</div>
-				) : null}
-				<div className={styles.balance}>
-					<div className={styles.pairRateName}>{synthToExchange.name} balance:</div>
-					<div>
+						<div className={styles.pairRateName}>{`${synthToBuy.name}/${synthToExchange.name}:`}</div>
 						{synthToExchange.sign}
-						{balances &&
-						balances[synthToExchange.name] &&
-						Number(balances[synthToExchange.name]) > 0
-							? numbro(Number(balances[synthToExchange.name])).format('0,0.0000')
-							: 0}
+						{numbro(rate).format(precision)}
+					</div>
+					{usdRate ? (
+						<div className={styles.pairRate}>
+							<div className={styles.pairRateName}>{`${synthToBuy.name}/sUSD:`}</div>$
+							{numbro(usdRate).format(precision)}
+						</div>
+					) : null}
+					<div className={styles.balance}>
+						<div className={styles.pairRateName}>{synthToExchange.name} balance:</div>
+						<div>
+							{synthToExchange.sign}
+							{balances &&
+							balances[synthToExchange.name] &&
+							Number(balances[synthToExchange.name]) > 0
+								? numbro(Number(balances[synthToExchange.name])).format('0,0.0000')
+								: 0}
+						</div>
 					</div>
 				</div>
-			</div>
-		);
+			);
+		} else {
+			return (<>
+					</>)
+		}
+
 	}
 
 	render() {

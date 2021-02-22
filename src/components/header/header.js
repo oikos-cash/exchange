@@ -79,6 +79,8 @@ class Header extends Component {
         return 'RINKEBY';
       case '42':
         return 'KOVAN';
+      case '97':
+        return 'BSC';
       default:
         return 'MAINNET';
     }
@@ -113,7 +115,7 @@ class Header extends Component {
     return (
       <div className={styles.header}>
         <div className={styles.logoWrapper}>
-          <img height="36" alt="logo" src="/images/synthetix-logo.svg" />
+          <img height="36" alt="logo" src="/images/oikos-logo.svg" />
           <button
             type="button"
             onClick={this.onEnvButtonClick}

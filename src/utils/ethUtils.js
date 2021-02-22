@@ -13,8 +13,8 @@ const getTransactionPrice = (gwei, ethPrice) => {
 export const getGasAndSpeedInfo = async () => {
   let [egsData, ethPrice, gasPriceLimit] = await Promise.all([
     fetch('https://ethgasstation.info/json/ethgasAPI.json'),
-    synthetixJsTools.synthetixJs.Depot.usdToEthPrice(),
-    synthetixJsTools.synthetixJs.Synthetix.gasPriceLimit(),
+    1800,//synthetixJsTools.synthetixJs.Depot.usdToEthPrice(),
+    8000000,//synthetixJsTools.synthetixJs.Synthetix.gasPriceLimit(),
   ]);
   egsData = await egsData.json();
   ethPrice = Number(synthetixJsTools.utils.formatEther(ethPrice));

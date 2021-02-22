@@ -27,6 +27,15 @@ class RateList extends Component {
       setSynthToBuy(currency);
     };
   }
+  
+  isEmpty(obj) {
+    for(var prop in obj) {
+      if(obj.hasOwnProperty(prop)) {
+        return false;
+      }
+    }
+    return JSON.stringify(obj) === JSON.stringify({});
+  }
 
   renderTableBody() {
     const {
@@ -38,19 +47,24 @@ class RateList extends Component {
     if (!exchangeRates) return;
 
     const filteredSynths = availableSynths.filter(synth => {
-      return synth.name !== synthToExchange.name && synth.name !== 'XDR';
+      return synth.name !== synthToExchange.name && synth.name !== 'XDR'  
     });
 
     return filteredSynths.map((synth, i) => {
       // Small fix to avoid price like 0.0000 when sKRW/sJPY against sXAU
+      console.log(`Synth name is ${synth.name}`)
       const precision =
         synth.name === 'sXAU' &&
         (synthToExchange.name === 'sKRW' || synthToExchange.name === 'sJPY')
           ? '0,0.00000000'
           : '0,0.00000';
-      const rates = exchangeRates[synth.name];
-      return (
-        <tr
+      let rates = [];
+      if (synth.name !== 'sUSD') {
+        rates =  exchangeRates[synth.name];
+      }
+       if (!this.isEmpty(exchangeRates)){
+         return (
+          <tr
           key={i}
           className={
             synthToBuy && synthToBuy.name === synth.name
@@ -68,7 +82,11 @@ class RateList extends Component {
             {synthToExchange.sign}
             {numbro(rates[synthToExchange.name]).format(precision)}
           </td>
-        </tr>
+        </tr>           
+         );
+       }
+      return (
+        <></>
       );
     });
   }

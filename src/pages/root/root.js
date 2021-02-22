@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { hot } from 'react-hot-loader/root';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -21,6 +22,8 @@ import DepotPopup from '../../components/depot-popup';
 import FeedbackPopup from '../../components/feedback-popup';
 import WalkthroughPopup from '../../components/walkthrough-popup';
 import LoadingScreen from '../../components/loading-screen';
+
+import {getDefaultProvider} from 'ethers';
 
 import {
   getCurrentScreen,
@@ -71,7 +74,7 @@ class Root extends Component {
             synthetixJsTools.getUtf8Bytes(synth.name)
           )
         ),
-        synthetixJsTools.synthetixJs.Depot.usdToEthPrice(),
+        1900,  
       ]);
       synthRates.forEach((rate, i) => {
         formattedSynthRates[availableSynths[i].name] = Number(
@@ -142,8 +145,9 @@ class Root extends Component {
     if (currentScreen === 'appDown') return;
     toggleLoadingScreen(true);
     setInterval(this.refreshData, 30 * 1000);
-    const { networkId } = await getEthereumNetwork();
-    synthetixJsTools.setContractSettings({ networkId });
+    const networkId = 97;
+    const provider = getDefaultProvider('https://data-seed-prebsc-2-s3.binance.org:8545');
+    synthetixJsTools.setContractSettings({ networkId, provider });
     // We remove all the synths which aren't considered as assets (eg: XDR)
     const allSynths = synthetixJsTools.synthetixJs.contractSettings.synths.filter(
       synth => synth.asset

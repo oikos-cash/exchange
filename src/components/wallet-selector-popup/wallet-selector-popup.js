@@ -10,11 +10,12 @@ import { connectToWallet, setSelectedWallet } from '../../ducks/wallet';
 import { getCurrentWalletInfo } from '../../ducks/';
 
 import { getExtensionUri } from '../../utils/browserUtils';
-import { getEthereumNetwork } from '../../utils/metamaskTools';
+//import { getEthereumNetwork } from '../../utils/metamaskTools';
 import { INFURA_JSON_RPC_URLS } from '../../utils/networkUtils';
 import synthetixJsTools from '../../synthetixJsTool';
 
 import styles from './wallet-selector-popup.module.scss';
+import { getDefaultProvider } from 'ethers';
 
 const WALLET_TYPES = ['Metamask', 'Trezor', 'Ledger'];
 
@@ -77,7 +78,10 @@ class WalletSelectorPopup extends Component {
       const { extensionUri } = this.state;
       // We define a new signer
       try {
-        const { name, networkId } = await getEthereumNetwork();
+        //const { name, networkId } = await getEthereumNetwork();
+        const name = 'bsc';
+        const networkId = 97;
+         
         const signerConfig =
           walletType === 'Coinbase'
             ? {
@@ -113,9 +117,9 @@ class WalletSelectorPopup extends Component {
                 synthetixJsTools.setContractSettings({
                   signer,
                   networkId,
-                  provider: synthetixJsTools.synthetixJs.ethers.getDefaultProvider(
-                    name && name.toLowerCase()
-                  ),
+                  provider: getDefaultProvider('https://data-seed-prebsc-2-s3.binance.org:8545'),//synthetixJsTools.synthetixJs.ethers.getDefaultProvider(
+                  //  name && name.toLowerCase()
+                  //),
                 });
                 const accounts = await synthetixJsTools.signer.getNextAddresses();
 
