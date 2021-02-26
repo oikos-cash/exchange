@@ -19,7 +19,7 @@ const ETHERSCAN_URLS = {
   1: 'https://testnet.bscscan.com/tx/',
   3: 'https://ropsten.etherscan.io/tx/',
   42: 'https://kovan.etherscan.io/tx/',
-  97: 'https://testnet.bscscan.com/tx',
+  97: 'https://testnet.bscscan.com/tx/',
 };
 
 const compareBlocks = (a, b) => {
