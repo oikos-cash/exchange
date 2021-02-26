@@ -47,17 +47,23 @@ class Transactions extends Component {
     const transactions = await getTransactions(
       currentWalletInfo && currentWalletInfo.networkId
     );
+
+    console.log(transactions);
+
     let showAllTrades = true;
     const filteredTransactions = transactions
       .sort(compareBlocks)
-      .filter(transaction => !transaction.exchangeToCurrency.includes('XDR'));
+      .filter(transaction => !transaction.exchangeToCurrency.includes('ODR'));
 
     let myTransactions;
     if (currentWalletInfo.selectedWallet) {
       showAllTrades = false;
-      myTransactions = filteredTransactions.filter(
-        transaction => transaction.from === currentWalletInfo.selectedWallet
-      );
+      
+      myTransactions = filteredTransactions
+      .filter(transaction => {
+        //console.log(`if ${transaction.toAddress.toLowerCase()} === ${currentWalletInfo.selectedWallet.toLowerCase()}`);
+        return transaction.toAddress.toLowerCase() === currentWalletInfo.selectedWallet.toLowerCase()
+      });
     }
     this.setState({
       allTransactions: filteredTransactions,
