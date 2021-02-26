@@ -79,6 +79,7 @@ class TradingWidget extends Component {
 		const { currentWalletInfo, synthToExchange, synthToBuy, exchangeRates } = this.props;
 		const { balances } = currentWalletInfo;
 		const synthToExchangeBalance = balances[synthToExchange.name];
+		if (Object.keys(exchangeRates).length === 0) return 
 		const conversionToMax = this.convert(
 			synthToBuy.name,
 			synthToExchangeBalance,
@@ -164,6 +165,7 @@ class TradingWidget extends Component {
 		const { inputValues } = this.state;
 		const currentInputValue = inputValues[synthToExchange.name] || 0;
 		const newInputValue = e && e.target.validity.valid ? e.target.value : currentInputValue;
+		if (Object.keys(exchangeRates).length === 0) return 
 
 		const convertedInputValue = this.convert(
 			synthToBuy.name,
@@ -183,6 +185,7 @@ class TradingWidget extends Component {
 		const { inputValues } = this.state;
 		const currentInputValue = inputValues[synthToBuy] || 0;
 		const newInputValue = e && e.target.validity.valid ? e.target.value : currentInputValue;
+		if (Object.keys(exchangeRates).length === 0) return 
 
 		const convertedInputValue = this.convert(
 			synthToExchange.name,
