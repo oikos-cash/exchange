@@ -45,7 +45,7 @@ class TradingComp extends Component {
         <tr key={index}>
           <td>
               <a className={styles.walletLink}
-                href={`https://etherscan.io/address/${address}#tokentxns`}
+                href={`https://testnet.bscscan.com/address/${address}#tokentxns`}
                 target="_blank">
                   {title || address}
               </a>

@@ -107,9 +107,7 @@ class TransactionStatusPopup extends Component {
       networkName = '';
     }
     window.open(
-      `https://${
-        networkName ? networkName + '.' : ''
-      }etherscan.io/tx/${transactionHash}`
+      `https://testnet.bscscan.com/tx/${transactionHash}`
     );
   }
 

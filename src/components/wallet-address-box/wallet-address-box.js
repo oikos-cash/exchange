@@ -7,6 +7,7 @@ const ETHERSCAN_URLS = {
   1: 'https://etherscan.io/address/',
   3: 'https://ropsten.etherscan.io/address/',
   42: 'https://kovan.etherscan.io/address/',
+  97: 'https://testnet.bscscan.com/address/'
 };
 
 const shortenAddress = (address, network) => {
