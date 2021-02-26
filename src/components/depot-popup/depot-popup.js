@@ -63,7 +63,7 @@ class DepotPopup extends Component {
       toggleTransactionStatusPopup(true);
       setTransactionStatusToConfirm();
       setTransactionPair({
-        fromSynth: 'ETH',
+        fromSynth: 'sBNB',
         toSynth: 'sUSD',
         fromAmount: ethInputValue,
         toAmount: synthInputValue,
@@ -146,7 +146,7 @@ class DepotPopup extends Component {
     const { ethBalance } = this.state;
     return (
       <div className={styles.ethBalance}>
-        <span>ETH Balance</span>
+        <span>BNB Balance</span>
         <span className={styles.ethBalanceValue}>
           {ethBalance ? numbro(ethBalance).format('0,0.00') : '0.00'}
         </span>
@@ -159,7 +159,7 @@ class DepotPopup extends Component {
     return (
       <Popup isVisible={isVisible} closePopup={this.closePopup}>
         <div className={styles.depotPopup}>
-          <h1>Buy sUSD with ETH</h1>
+          <h1>Buy sUSD with BNB</h1>
           <p className={styles.popupDescription}>
             Here you can purchase sUSD through our Depot, which is a platform
             available through Mintr and Swappr that allows sUSD buyers to buy
@@ -185,7 +185,7 @@ class DepotPopup extends Component {
                 className={styles.inputElement}
                 type="text"
               />
-              <span className={styles.inputLabel}>ETH</span>
+              <span className={styles.inputLabel}>BNB</span>
             </div>
             <img src="/images/swap-icon.svg" />
             <div className={styles.inputWrapper}>

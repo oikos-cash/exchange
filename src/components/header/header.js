@@ -82,7 +82,7 @@ class Header extends Component {
       case '97':
         return 'BSC';
       default:
-        return 'MAINNET';
+        return 'BSC';
     }
   }
 

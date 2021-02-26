@@ -130,7 +130,7 @@ class WalletSelectorWithBalances extends Component {
               <th>Total SNX Balance</th>
               <th>Escrowed SNX</th>
               {this.renderSynthBalanceHeader()}
-              <th>ETH Balance</th>
+              <th>BNB Balance</th>
             </tr>
           </thead>
           <tbody>{this.renderTableContent()}</tbody>

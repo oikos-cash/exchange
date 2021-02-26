@@ -57,7 +57,7 @@ class WalletSelectorPopup extends Component {
           <div className={styles.steps}>
             <div className={styles.step}>
               To get started with Synthetix Exchange on Testnet first get some
-              ETH from {this.renderFaucetLink()}
+              BNB from {this.renderFaucetLink()}
             </div>
           </div>
         </div>

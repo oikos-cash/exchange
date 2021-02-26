@@ -54,7 +54,7 @@
 		"resolve": "1.8.1",
 		"sass-loader": "7.1.0",
 		"style-loader": "0.23.1",
-		"@oikos/oikos-js-bsc": "0.1.4",
+		"@oikos/oikos-js-bsc": "0.1.9",
 		"ethers": "5.0.31",
 		"url-loader": "1.1.1",
 		"webpack": "4.19.1",
@@ -64,7 +64,7 @@
 	},
 	"scripts": {
 		"clean-install": "rm ./package-lock.json && rm -rf node_modules/* && npm install",
-		"start": "node scripts/start.js",
+		"start": "node --max-old-space-size=4096  scripts/start.js",
 		"build": "node scripts/build.js",
 		"test": "node scripts/test.js",
 		"lint": "eslint ."

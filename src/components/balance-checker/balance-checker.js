@@ -186,7 +186,7 @@ class BalanceChecker extends Component {
             </td>
           </tr>
           <tr className={styles.tableBodyRow}>
-            <td className={styles.tableBodySynth}>ETH</td>
+            <td className={styles.tableBodySynth}>BNB</td>
             <td className={styles.tableBodyBalance}>
               <div>
                 {ethBalance ? numbro(ethBalance.amount).format('0,0.00') : '--'}
@@ -205,14 +205,14 @@ class BalanceChecker extends Component {
                 onClick={this.showDepotPopup}
                 className={`${styles.balanceCheckerButton} ${styles.balanceCheckerButtonWhite}`}
               >
-                Buy sUSD with ETH
+                Buy sUSD with BNB
               </button>
               <a
                 href={`https://uniswap.exchange/swap/${proxyERC20sUSDAddress}`}
                 target="_blank"
                 className={`${styles.balanceCheckerButton} ${styles.balanceCheckerButtonWhite} ${styles.balanceCheckerAnchor}`}
               >
-                Buy with ETH on Uniswap
+                Buy with BNB on PancakeSwap
               </a>
             </td>
           </tr>
