@@ -74,7 +74,7 @@ class Root extends Component {
             synthetixJsTools.getUtf8Bytes(synth.name)
           )
         ),
-        1900,  
+        synthetixJsTools.synthetixJs.ExchangeRates.rateForCurrency(synthetixJsTools.getUtf8Bytes("sBNB")),  
       ]);
       synthRates.forEach((rate, i) => {
         formattedSynthRates[availableSynths[i].name] = Number(
@@ -135,6 +135,10 @@ class Root extends Component {
     this.updateExchangeFeeRate();
   }
 
+  refreshRates() {
+
+  }
+
   async componentDidMount() {
     const {
       toggleLoadingScreen,
@@ -144,6 +148,7 @@ class Root extends Component {
     } = this.props;
     if (currentScreen === 'appDown') return;
     toggleLoadingScreen(true);
+    setInterval(this.refreshData, 3 * 1000);
     setInterval(this.refreshData, 30 * 1000);
     const networkId = 97;
     const provider = getDefaultProvider('https://data-seed-prebsc-2-s3.binance.org:8545');
