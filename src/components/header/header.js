@@ -155,7 +155,7 @@ class Header extends Component {
           {selectedWallet ? (
             <WalletAddressBox
               wallet={selectedWallet}
-              network={currentWalletInfo.networkId}
+              network={currentWalletInfo.networkId == 97 ? 'bsc' : 'mainnet'}
             />
           ) : (
             <button
