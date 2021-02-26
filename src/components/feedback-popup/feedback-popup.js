@@ -107,7 +107,7 @@ class FeedbackPopup extends Component {
         onSubmit={this.submitForm}
       >
         <div className={styles.formSection}>
-          <h2>How would you rate your experience using Synthetix.Exchange?</h2>
+          <h2>How would you rate your experience using Oikos.Exchange?</h2>
           {this.renderRatings()}
         </div>
         <div className={styles.formSection}>
