@@ -24,10 +24,10 @@ class GweiSelector extends Component {
   render() {
     const { transactionSettings, hasGweiLimit } = this.props;
     const { transactionSpeed, gasAndSpeedInfo } = transactionSettings;
-    const gasPriceLimit =
-      gasAndSpeedInfo && gasAndSpeedInfo.fastestAllowed
-        ? gasAndSpeedInfo.fastestAllowed.gwei
-        : null;
+    //const gasPriceLimit =
+    //  gasAndSpeedInfo && gasAndSpeedInfo.fastestAllowed
+    //    ? gasAndSpeedInfo.fastestAllowed.gwei
+    //    : null;
 
     const speedArray = hasGweiLimit
       ? ['slowAllowed', 'averageAllowed', 'fastestAllowed']
@@ -35,12 +35,12 @@ class GweiSelector extends Component {
     return (
       <div className={styles.gweiSelectorWrapper}>
         <div className={styles.gweiSelectorHeading}>
-          Select transaction speed
+         {/*} Transaction speed
           {hasGweiLimit ? (
             <div className={styles.gweiSelectorHeadingMaxLimit}>
               (<span>{gasPriceLimit} gwei max</span>)
             </div>
-          ) : null}
+          ) : null}*/}
         </div>
         <div className={styles.gweiSelectorRow}>
           {speedArray.map((speed, i) => {
