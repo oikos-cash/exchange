@@ -164,9 +164,9 @@ class BalanceChecker extends Component {
   renderTotalBalance() {
     const { totalBalance, ethBalance } = this.state;
 
-    const proxyERC20sUSDAddress = synthetixJsTools.synthetixJs
-      ? synthetixJsTools.synthetixJs.contractSettings.addressList.ProxyERC20sUSD
-      : '';
+    //const proxyERC20sUSDAddress = synthetixJsTools.synthetixJs
+    //  ? synthetixJsTools.synthetixJs.contractSettings.addressList.ProxyERC20sUSD
+    //  : '';
     return (
       <table cellPadding="0" cellSpacing="0" className={styles.table}>
         <thead>
@@ -197,8 +197,8 @@ class BalanceChecker extends Component {
                   : null}
               </div>
             </td>
-          </tr>
-          <tr>
+          </tr> 
+          {/*<tr>
             <td colSpan="2" className={styles.tableBodyButtonRow}>
               <button
                 disabled={!totalBalance}
@@ -215,7 +215,7 @@ class BalanceChecker extends Component {
                 Buy with BNB on PancakeSwap
               </a>
             </td>
-          </tr>
+          </tr>*/}
         </tbody>
       </table>
     );
