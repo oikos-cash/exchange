@@ -23,8 +23,9 @@ class WalletSelectorPopup extends Component {
   renderFaucetLink() {
     const { currentWalletInfo } = this.props;
     const networkId = currentWalletInfo.networkId;
+    console.log(`got networkId ${networkId}`)
     switch (networkId) {
-      case '3':
+      case 3:
         return (
           <a
             href="https://faucet.metamask.io/"
@@ -34,7 +35,7 @@ class WalletSelectorPopup extends Component {
             ROPSTEN faucet.
           </a>
         );
-      case '42':
+      case 42:
         return (
           <a
             href="https://github.com/kovan-testnet/"
@@ -44,6 +45,24 @@ class WalletSelectorPopup extends Component {
             KOVAN faucet.
           </a>
         );
+        case 97:
+          return (
+            <a href="https://testnet.binance.org/faucet-smart" 
+               target="_blank"
+               rel="noopener noreferrer"
+            >
+              BSC Faucet
+            </a>
+          );
+          default :
+          return(
+          <a href="https://freebinancecoin.com/" 
+             target="_blank"
+             rel="noopener noreferrer"
+          >
+            BSC Faucet
+          </a>
+          );
     }
   }
 
@@ -56,7 +75,7 @@ class WalletSelectorPopup extends Component {
           <h2>TESTNET mode</h2>
           <div className={styles.steps}>
             <div className={styles.step}>
-              To get started with Synthetix Exchange on Testnet first get some
+              To get started with Oikos Exchange on Testnet first get some
               BNB from {this.renderFaucetLink()}
             </div>
           </div>
