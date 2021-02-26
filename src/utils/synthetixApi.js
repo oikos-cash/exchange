@@ -2,7 +2,7 @@ const SYNTHETIX_API_URL_BY_NETWORKS = {
   1: 'https://api.synthetix.io/api/',
   3: 'https://api.synthetix.io/api/',
   42: 'https://kovan.api.synthetix.io/api/',
-  97: 'http://185.180.223.170:9031/api/',
+  97: 'http://api-bsc.oikos.exchange/api/',
 };
 
 export const getTransactions = async networkId => {
