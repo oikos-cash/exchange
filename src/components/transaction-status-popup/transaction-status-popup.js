@@ -54,7 +54,7 @@ class TransactionStatusPopup extends Component {
     return (
       <div>
         <div className={styles.feeRow}>
-          <span className={styles.feeRowHeading}>Ethereum Network fees</span>
+          <span className={styles.feeRowHeading}>BSC Network fees</span>
           <span className={styles.feeRowValue}>${gasPriceUsd}</span>
         </div>
         <div className={styles.feeRow}>
