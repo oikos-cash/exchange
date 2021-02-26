@@ -84,10 +84,14 @@ class RateList extends Component {
           </td>
         </tr>           
          );
+       } else {
+         return <>
+         <tr>
+           <td> {synthToExchange.name}/{synth.name}</td><td>...loading</td>
+         </tr>
+         
+         </>
        }
-      return (
-        <></>
-      );
     });
   }
 
