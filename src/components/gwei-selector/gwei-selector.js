@@ -67,6 +67,9 @@ class GweiSelector extends Component {
 }
 
 const mapStateToProps = state => {
+  const txSettings = getTransactionSettings(state);
+  console.log(txSettings);
+  txSettings.transactionSpeed = 'average';
   return {
     transactionSettings: getTransactionSettings(state),
   };

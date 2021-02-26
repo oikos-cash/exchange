@@ -1,7 +1,8 @@
 import synthetixJsTools from '../synthetixJsTool';
+import * as data from './gas.json';
 
-export const DEFAULT_GAS_LIMIT = 600000;
-export const DEFAULT_GAS_PRICE = 4000000000;
+export const DEFAULT_GAS_LIMIT = 1800000;
+export const DEFAULT_GAS_PRICE = 2000000000;
 export const GWEI = 1000000000;
 
 const getTransactionPrice = (gwei, ethPrice) => {
@@ -11,36 +12,35 @@ const getTransactionPrice = (gwei, ethPrice) => {
 };
 
 export const getGasAndSpeedInfo = async () => {
-  let [egsData, ethPrice, gasPriceLimit] = await Promise.all([
-    fetch('https://ethgasstation.info/json/ethgasAPI.json'),
-    1800,//synthetixJsTools.synthetixJs.Depot.usdToEthPrice(),
-    8000000,//synthetixJsTools.synthetixJs.Synthetix.gasPriceLimit(),
-  ]);
-  egsData = await egsData.json();
-  ethPrice = Number(synthetixJsTools.utils.formatEther(ethPrice));
-  gasPriceLimit = Number(
-    synthetixJsTools.ethersUtils.formatUnits(gasPriceLimit, 'gwei')
-  );
 
+  let [ethPrice] = await Promise.all([
+    //getNetworkInfo(),
+    synthetixJsTools.synthetixJs.ExchangeRates.rateForCurrency(synthetixJsTools.ethersUtils.formatBytes32String('sBNB')),
+  ]);  
+  //let gasPriceLimit;
+  let egsData = data; 
+	egsData = egsData.default;
+  ethPrice = Number(synthetixJsTools.utils.formatEther(ethPrice));
+  //gasPriceLimit = Number(
+  //  synthetixJsTools.ethersUtils.formatUnits(DEFAULT_GAS_LIMIT, 'gwei')
+  //);
+  console.log(egsData)
   const fastGwei = egsData.fast / 10;
   const averageGwei = egsData.average / 10;
   const slowGwei = egsData.safeLow / 10;
 
   return {
     fastestAllowed: {
-      gwei: gasPriceLimit,
-      price: getTransactionPrice(gasPriceLimit, ethPrice),
+      gwei: fastGwei,
+      price: getTransactionPrice(fastGwei, ethPrice),
     },
     averageAllowed: {
-      gwei: Math.min(averageGwei, gasPriceLimit),
-      price: getTransactionPrice(
-        Math.min(averageGwei, gasPriceLimit),
-        ethPrice
-      ),
+      gwei: averageGwei,
+      price: getTransactionPrice(averageGwei, ethPrice),
     },
     slowAllowed: {
-      gwei: Math.min(slowGwei, gasPriceLimit),
-      price: getTransactionPrice(Math.min(slowGwei, gasPriceLimit), ethPrice),
+      gwei: slowGwei,
+      price: getTransactionPrice(slowGwei, ethPrice),
     },
     fast: {
       gwei: fastGwei,
