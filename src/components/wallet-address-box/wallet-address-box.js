@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './wallet-address-box.module.scss';
 
 const ETHERSCAN_URLS = {
-  1: 'https://etherscan.io/address/',
+  1: 'https://testnet.bscscan.com/address/',
   3: 'https://ropsten.etherscan.io/address/',
   42: 'https://kovan.etherscan.io/address/',
   97: 'https://testnet.bscscan.com/address/',
