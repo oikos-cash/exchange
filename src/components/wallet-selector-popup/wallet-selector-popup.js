@@ -17,7 +17,7 @@ import synthetixJsTools from '../../synthetixJsTool';
 import styles from './wallet-selector-popup.module.scss';
 import { getDefaultProvider } from 'ethers';
 
-const WALLET_TYPES = ['Metamask', 'Trezor', 'Ledger'];
+const WALLET_TYPES = ['Metamask'/*, 'Trezor', 'Ledger'*/];
 
 class WalletSelectorPopup extends Component {
   constructor() {
