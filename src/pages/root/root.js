@@ -132,9 +132,6 @@ class Root extends Component {
     this.getFrozenSynths();
     this.updateGasAndSpeedPrices();
     this.updateExchangeFeeRate();
-  }
-
-  refreshRates() {
     this.updateRates();
   }
 
@@ -148,7 +145,6 @@ class Root extends Component {
     if (currentScreen === 'appDown') return;
     toggleLoadingScreen(true);
     setInterval(this.refreshData, 10 * 1000);
-    setInterval(this.refreshRates, 3 * 1000);
     const networkId = 97;
     const provider = getDefaultProvider('https://data-seed-prebsc-2-s3.binance.org:8545');
     synthetixJsTools.setContractSettings({ networkId, provider });
