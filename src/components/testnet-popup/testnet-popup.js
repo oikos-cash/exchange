@@ -23,7 +23,7 @@ class WalletSelectorPopup extends Component {
   renderFaucetLink() {
     const { currentWalletInfo } = this.props;
     const networkId = currentWalletInfo.networkId;
-    console.log(`got networkId ${networkId}`)
+    
     switch (networkId) {
       case 3:
         return (

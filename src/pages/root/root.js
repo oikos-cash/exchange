@@ -74,7 +74,7 @@ class Root extends Component {
             oikosJsTools.getUtf8Bytes(synth.name)
           )
         ),
-        oikosJsTools.oikosJs.ExchangeRates.rateForCurrency(oikosJsTools.getUtf8Bytes("sBNB")),  
+        oikosJsTools.oikosJs.ExchangeRates.rateForCurrency(oikosJsTools.getUtf8Bytes("oBNB")),  
       ]);
       synthRates.forEach((rate, i) => {
         formattedSynthRates[availableSynths[i].name] = Number(
