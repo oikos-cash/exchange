@@ -39,7 +39,7 @@ class Markets extends Component {
     const { inputValue } = this.state;
     const filteredSynths = availableSynths.filter(synth => {
       return (
-        synth.name !== 'XDR' &&
+        synth.name !== 'ODR' &&
         synth.name.toUpperCase().includes(inputValue.toUpperCase())
       );
     });
@@ -54,7 +54,7 @@ class Markets extends Component {
           {availableSynths
             .filter(
               quoteSynth =>
-                baseSynth.name !== quoteSynth.name && quoteSynth.name !== 'XDR'
+                baseSynth.name !== quoteSynth.name && quoteSynth.name !== 'ODR'
             )
             .map(quoteSynth => {
               return (

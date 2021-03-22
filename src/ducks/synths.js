@@ -23,7 +23,7 @@ const sortSynths = (a, b) => {
   ) {
     return -1;
   }
-  if (a.category === 'forex' && b.category === 'forex' && a.name === 'sUSD') {
+  if (a.category === 'forex' && b.category === 'forex' && a.name === 'oUSD') {
     return -1;
   }
   return 0;
@@ -32,8 +32,8 @@ const sortSynths = (a, b) => {
 const reducer = (state = defaultState, action = {}) => {
   switch (action.type) {
     case SET_AVAILABLE_SYNTHS: {
-      const fromSynth = action.payload.find(synth => synth.name === 'sUSD');
-      const toSynth = action.payload.find(synth => synth.name === 'sBTC');
+      const fromSynth = action.payload.find(synth => synth.name === 'oUSD');
+      const toSynth = action.payload.find(synth => synth.name === 'oBTC');
       const availableSynths = action.payload.sort(sortSynths);
       return { ...state, availableSynths: availableSynths, fromSynth, toSynth };
     }

@@ -37,7 +37,7 @@ class TransactionStatusPopup extends Component {
   }
 
   isSwingTrade(fromSynth, toSynth) {
-    if (fromSynth.name === 'sUSD' || toSynth.name === 'sUSD') return false;
+    if (fromSynth.name === 'oUSD' || toSynth.name === 'oUSD') return false;
     if (fromSynth.inverted && !toSynth.inverted) return true;
     if (!fromSynth.inverted && toSynth.inverted) return true;
   }

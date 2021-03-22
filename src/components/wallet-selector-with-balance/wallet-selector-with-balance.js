@@ -11,7 +11,7 @@ class WalletSelectorWithBalances extends Component {
     super();
     this.state = {
       synthPickerBoxIsOpen: false,
-      selectedSynth: 'sUSD',
+      selectedSynth: 'oUSD',
     };
     this.onSynthSelect = this.onSynthSelect.bind(this);
   }
@@ -29,11 +29,11 @@ class WalletSelectorWithBalances extends Component {
       .map((wallet, index) => {
         const {
           collateral = 0,
-          synthetixEscrow = 0,
+          oikosEscrow = 0,
           rewardEscrow = 0,
           eth = 0,
         } = wallet.balances;
-        const totalEscrow = synthetixEscrow + rewardEscrow;
+        const totalEscrow = oikosEscrow + rewardEscrow;
         return (
           <tr key={index} onClick={onSelectWallet(index)}>
             <td>{wallet.address}</td>

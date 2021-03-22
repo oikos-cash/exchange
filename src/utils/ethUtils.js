@@ -1,4 +1,4 @@
-import synthetixJsTools from '../synthetixJsTool';
+import oikosJsTools from '../oikosJsTool';
 import * as data from './gas.json';
 
 export const DEFAULT_GAS_LIMIT = 1800000;
@@ -15,14 +15,14 @@ export const getGasAndSpeedInfo = async () => {
 
   let [ethPrice] = await Promise.all([
     //getNetworkInfo(),
-    synthetixJsTools.synthetixJs.ExchangeRates.rateForCurrency(synthetixJsTools.ethersUtils.formatBytes32String('sBNB')),
+    oikosJsTools.oikosJs.ExchangeRates.rateForCurrency(oikosJsTools.ethersUtils.formatBytes32String('sBNB')),
   ]);  
   //let gasPriceLimit;
   let egsData = data; 
 	egsData = egsData.default;
-  ethPrice = Number(synthetixJsTools.utils.formatEther(ethPrice));
+  ethPrice = Number(oikosJsTools.utils.formatEther(ethPrice));
   //gasPriceLimit = Number(
-  //  synthetixJsTools.ethersUtils.formatUnits(DEFAULT_GAS_LIMIT, 'gwei')
+  //  oikosJsTools.ethersUtils.formatUnits(DEFAULT_GAS_LIMIT, 'gwei')
   //);
   console.log(egsData)
   const fastGwei = egsData.fast / 10;

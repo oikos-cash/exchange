@@ -28,7 +28,7 @@ import {
 } from '../../ducks/wallet';
 import { setSynthToExchange, setSynthToBuy } from '../../ducks/synths';
 
-import synthetixJsTools from '../../synthetixJsTool';
+import oikosJsTools from '../../oikosJsTool';
 
 import styles from './trading-widget.module.scss';
 
@@ -109,7 +109,7 @@ class TradingWidget extends Component {
 		const { inputValues } = this.state;
 		const { walletType, gasPrice, gasLimit } = currentWalletInfo;
 		let transactionResult;
-		if (!synthetixJsTools.initialized || !currentWalletInfo || !currentWalletInfo.selectedWallet)
+		if (!oikosJsTools.initialized || !currentWalletInfo || !currentWalletInfo.selectedWallet)
 			return;
 
 		const fromAmount = inputValues[synthToExchange.name];
@@ -123,10 +123,10 @@ class TradingWidget extends Component {
 				fromAmount,
 				toAmount,
 			});
-			transactionResult = await synthetixJsTools.synthetixJs.Synthetix.exchange(
-				synthetixJsTools.getUtf8Bytes(synthToExchange.name),
-				synthetixJsTools.utils.parseEther(fromAmount),
-				synthetixJsTools.getUtf8Bytes(synthToBuy.name),
+			transactionResult = await oikosJsTools.oikosJs.Oikos.exchange(
+				oikosJsTools.getUtf8Bytes(synthToExchange.name),
+				oikosJsTools.utils.parseEther(fromAmount),
+				oikosJsTools.getUtf8Bytes(synthToBuy.name),
 				{
 					gasPrice,
 					gasLimit,
@@ -141,7 +141,7 @@ class TradingWidget extends Component {
 			const hash = transactionResult.hash || transactionResult;
 			setTransactionStatusToProgress(hash);
 			try {
-				await synthetixJsTools.util.waitForTransaction(hash);
+				await oikosJsTools.util.waitForTransaction(hash);
 				setTransactionStatusToSuccess();
 				setTimeout(() => {
 					toggleTransactionStatusPopup(false);
@@ -262,9 +262,9 @@ class TradingWidget extends Component {
 		if (!this.isEmpty(exchangeRates)) {
 			const rate = 1; //exchangeRates[synthToBuy.name][synthToExchange.name];
 			let usdRate;
-			if (![synthToBuy.name, synthToExchange.name].includes('sUSD')) {
+			if (![synthToBuy.name, synthToExchange.name].includes('oUSD')) {
 				console.log(exchangeRates[synthToBuy.name]);
-				usdRate = 1 ; //exchangeRates[synthToBuy.name]['sUSD'];
+				usdRate = 1 ; //exchangeRates[synthToBuy.name]['oUSD'];
 			}
 			return (
 				<div className={styles.pairRateAndBalanceRow}>
@@ -275,7 +275,7 @@ class TradingWidget extends Component {
 					</div>
 					{usdRate ? (
 						<div className={styles.pairRate}>
-							<div className={styles.pairRateName}>{`${synthToBuy.name}/sUSD:`}</div>$
+							<div className={styles.pairRateName}>{`${synthToBuy.name}/oUSD:`}</div>$
 							{numbro(usdRate).format(precision)}
 						</div>
 					) : null}

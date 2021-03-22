@@ -9,7 +9,7 @@ import { getCurrentWalletInfo, getAvailableSynths } from '../../ducks/';
 import { connectToWallet } from '../../ducks/wallet';
 import { changeScreen, toggleLoadingScreen } from '../../ducks/ui';
 
-import synthetixJsTools from '../../synthetixJsTool';
+import oikosJsTools from '../../oikosJsTool';
 
 import styles from './connect-to-wallet.module.scss';
 
@@ -33,7 +33,7 @@ class ConnectToWallet extends Component {
     const { currentWalletInfo } = this.props;
     let availableWallets;
     try {
-      availableWallets = await synthetixJsTools.signer.getNextAddresses(
+      availableWallets = await oikosJsTools.signer.getNextAddresses(
         0,
         WALLET_PAGE_SIZE
       );
@@ -68,23 +68,23 @@ class ConnectToWallet extends Component {
   }
 
   async getWalletsBalances(wallets) {
-    const { formatEther } = synthetixJsTools.synthetixJs.utils;
+    const { formatEther } = oikosJsTools.oikosJs.utils;
     const balancePromises = wallets.map(wallet => {
       return Promise.all([
-        synthetixJsTools.synthetixJs.Synthetix.collateral(wallet.address),
-        synthetixJsTools.synthetixJs.SynthetixEscrow.balanceOf(wallet.address),
-        synthetixJsTools.synthetixJs.RewardEscrow.balanceOf(wallet.address),
-        synthetixJsTools.synthetixJs.sUSD.balanceOf(wallet.address),
-        synthetixJsTools.provider.getBalance(wallet.address),
+        oikosJsTools.oikosJs.Oikos.collateral(wallet.address),
+        oikosJsTools.oikosJs.OikosEscrow.balanceOf(wallet.address),
+        oikosJsTools.oikosJs.RewardEscrow.balanceOf(wallet.address),
+        oikosJsTools.oikosJs.oUSD.balanceOf(wallet.address),
+        oikosJsTools.provider.getBalance(wallet.address),
       ]);
     });
     let balances = await Promise.all(balancePromises);
     return balances.map(wallet => {
       return {
         collateral: Number(formatEther(wallet[0])),
-        synthetixEscrow: Number(formatEther(wallet[1])),
+        oikosEscrow: Number(formatEther(wallet[1])),
         rewardEscrow: Number(formatEther(wallet[2])),
-        sUSD: Number(formatEther(wallet[3])),
+        oUSD: Number(formatEther(wallet[3])),
         eth: Number(formatEther(wallet[4])),
       };
     });
@@ -92,7 +92,7 @@ class ConnectToWallet extends Component {
 
   async getSynthBalances(synth) {
     const { availableWallets } = this.state;
-    const { formatEther } = synthetixJsTools.synthetixJs.utils;
+    const { formatEther } = oikosJsTools.oikosJs.utils;
     if (
       availableWallets[0] &&
       availableWallets[0].balances &&
@@ -101,7 +101,7 @@ class ConnectToWallet extends Component {
       return;
     const balances = await Promise.all(
       availableWallets.map(wallet =>
-        synthetixJsTools.synthetixJs[synth].balanceOf(wallet.address)
+        oikosJsTools.oikosJs[synth].balanceOf(wallet.address)
       )
     );
     const wallets = availableWallets.map((wallet, index) => {
@@ -118,8 +118,8 @@ class ConnectToWallet extends Component {
 
   async getNextAddresses(pageSize) {
     const { availableWallets } = this.state;
-    if (!synthetixJsTools.signer.getNextAddresses) return;
-    let nextAddresses = await synthetixJsTools.signer.getNextAddresses(
+    if (!oikosJsTools.signer.getNextAddresses) return;
+    let nextAddresses = await oikosJsTools.signer.getNextAddresses(
       availableWallets.length,
       pageSize
     );
@@ -138,7 +138,7 @@ class ConnectToWallet extends Component {
   selectWalletIndex(walletIndex) {
     const walletAddress = this.state.availableWallets[walletIndex];
     if (!walletAddress) return;
-    synthetixJsTools.signer.setAddressIndex(walletIndex);
+    oikosJsTools.signer.setAddressIndex(walletIndex);
   }
 
   onSelectWallet(index) {

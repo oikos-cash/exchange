@@ -18,7 +18,7 @@ import {
 } from '../../ducks/wallet';
 import { getCurrentWalletInfo, getEthRate } from '../../ducks';
 
-import synthetixJsTools from '../../synthetixJsTool';
+import oikosJsTools from '../../oikosJsTool';
 import { formatBigNumber } from '../../utils/converterUtils';
 
 import styles from './depot-popup.module.scss';
@@ -64,15 +64,15 @@ class DepotPopup extends Component {
       setTransactionStatusToConfirm();
       setTransactionPair({
         fromSynth: 'sBNB',
-        toSynth: 'sUSD',
+        toSynth: 'oUSD',
         fromAmount: ethInputValue,
         toAmount: synthInputValue,
       });
-      transactionResult = await synthetixJsTools.synthetixJs.Depot.exchangeEtherForSynths(
+      transactionResult = await oikosJsTools.oikosJs.Depot.exchangeEtherForSynths(
         {
           gasPrice,
           gasLimit,
-          value: synthetixJsTools.utils.parseEther(ethInputValue),
+          value: oikosJsTools.utils.parseEther(ethInputValue),
         }
       );
     } catch (e) {
@@ -85,7 +85,7 @@ class DepotPopup extends Component {
       const hash = transactionResult.hash || transactionResult;
       setTransactionStatusToProgress(hash);
       try {
-        await synthetixJsTools.util.waitForTransaction(hash);
+        await oikosJsTools.util.waitForTransaction(hash);
         setTransactionStatusToSuccess();
         setTimeout(() => {
           toggleTransactionStatusPopup(false);
@@ -100,7 +100,7 @@ class DepotPopup extends Component {
   async componentDidUpdate(prevProps) {
     if (!prevProps.isVisible && this.props.isVisible) {
       const { currentWalletInfo } = this.props;
-      const { initialized, provider } = synthetixJsTools;
+      const { initialized, provider } = oikosJsTools;
       if (
         !initialized ||
         !currentWalletInfo ||
@@ -159,11 +159,11 @@ class DepotPopup extends Component {
     return (
       <Popup isVisible={isVisible} closePopup={this.closePopup}>
         <div className={styles.depotPopup}>
-          <h1>Buy sUSD with BNB</h1>
+          <h1>Buy oUSD with BNB</h1>
           <p className={styles.popupDescription}>
-            Here you can purchase sUSD through our Depot, which is a platform
-            available through Mintr and Swappr that allows sUSD buyers to buy
-            from SNX holders who have minted sUSD.{' '}
+            Here you can purchase oUSD through our Depot, which is a platform
+            available through Mintr and Swappr that allows oUSD buyers to buy
+            from SNX holders who have minted oUSD.{' '}
           </p>
           {this.renderEthBalance()}
           <div className={styles.inputLabelRow}>
@@ -197,7 +197,7 @@ class DepotPopup extends Component {
                 className={styles.inputElement}
                 type="text"
               />
-              <span className={styles.inputLabel}>sUSD</span>
+              <span className={styles.inputLabel}>oUSD</span>
             </div>
           </div>
           <GweiSelector />

@@ -47,7 +47,7 @@ class RateList extends Component {
     if (!exchangeRates) return;
 
     const filteredSynths = availableSynths.filter(synth => {
-      return synth.name !== synthToExchange.name && synth.name !== 'XDR'  
+      return synth.name !== synthToExchange.name && synth.name !== 'ODR'  
     });
 
     return filteredSynths.map((synth, i) => {
@@ -59,7 +59,7 @@ class RateList extends Component {
           ? '0,0.00000000'
           : '0,0.00000';
       let rates = [];
-      if (synth.name !== 'sUSD') {
+      if (synth.name !== 'oUSD') {
         rates =  exchangeRates[synth.name];
       }
        if (!this.isEmpty(exchangeRates)){

@@ -1,9 +1,9 @@
-import synthetixJsTools from '../synthetixJsTool';
+import oikosJsTools from '../oikosJsTool';
 
 export const formatBigNumber = (amount, decimals, commify) => {
   if (!amount) return;
   commify = !!commify;
-  const amountString = synthetixJsTools.utils.formatEther(amount, { commify });
+  const amountString = oikosJsTools.utils.formatEther(amount, { commify });
 
   if (typeof decimals === 'undefined') {
     return amountString;

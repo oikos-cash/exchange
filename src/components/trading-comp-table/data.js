@@ -1,4 +1,4 @@
-import synthetixJsTools from '../../synthetixJsTool'
+import oikosJsTools from '../../oikosJsTool'
 import { formatBigNumber } from '../../utils/converterUtils';
 import { maxBy } from 'lodash'
 
@@ -95,7 +95,7 @@ export const competitors =
     'tier': 'dolphin',
     'startingBalance': 0,
     'address': '0x542a0eaf1358480ec0703f07bc3120a6503ebbc1',
-    'notes': 'No sUSD',
+    'notes': 'No oUSD',
   },
   {
     'title': 'shrimpalooza',
@@ -148,11 +148,11 @@ function sleep(ms) {
 }
 
 export async function getCompetitorsData() {
-  const { synthetixJs, initialized } = synthetixJsTools;
+  const { oikosJs, initialized } = oikosJsTools;
   if (!initialized)
     return;
 
-  synths = synthetixJs.contractSettings.synths.filter(({ asset }) => asset);
+  synths = oikosJs.contractSettings.synths.filter(({ asset }) => asset);
 
   // get starting balance
   // await Promise.all(competitors.map(competitor => {
@@ -185,7 +185,7 @@ export async function getCompetitorsData() {
 }
 
 async function getWalletBalance(wallet, blockNbr) {
-  const { synthetixJs, getUtf8Bytes } = synthetixJsTools;
+  const { oikosJs, getUtf8Bytes } = oikosJsTools;
 
   let atBlock = {}
   if (blockNbr) {
@@ -196,14 +196,14 @@ async function getWalletBalance(wallet, blockNbr) {
   try {
     balances = await Promise.all(
       synths.map(synth => {
-        return synthetixJs[synth.name].balanceOf(wallet, atBlock);
+        return oikosJs[synth.name].balanceOf(wallet, atBlock);
       })
     );
   } catch (e) {
     await sleep(500)
     balances = await Promise.all(
       synths.map(synth => {
-        return synthetixJs[synth.name].balanceOf(wallet, atBlock);
+        return oikosJs[synth.name].balanceOf(wallet, atBlock);
       })
     );
   }
@@ -212,10 +212,10 @@ async function getWalletBalance(wallet, blockNbr) {
   try {
     totalBalance = await Promise.all(
       balances.map((balance, i) => {
-        return synthetixJs.Synthetix.effectiveValue(
+        return oikosJs.Oikos.effectiveValue(
           getUtf8Bytes(synths[i].name),
           balance,
-          getUtf8Bytes('sUSD'),
+          getUtf8Bytes('oUSD'),
           atBlock
         ).then(balance => ({
           key: synths[i].name,
@@ -227,10 +227,10 @@ async function getWalletBalance(wallet, blockNbr) {
     await sleep(500);
     totalBalance = await Promise.all(
       balances.map((balance, i) => {
-        return synthetixJs.Synthetix.effectiveValue(
+        return oikosJs.Oikos.effectiveValue(
           getUtf8Bytes(synths[i].name),
           balance,
-          getUtf8Bytes('sUSD'),
+          getUtf8Bytes('oUSD'),
           atBlock
         ).then(balance => ({
           key: synths[i].name,
@@ -240,7 +240,7 @@ async function getWalletBalance(wallet, blockNbr) {
     );
   }
 
-  const primarySynth = maxBy(totalBalance, (elem) => parseFloat(synthetixJsTools.utils.formatEther(elem.value)))
+  const primarySynth = maxBy(totalBalance, (elem) => parseFloat(oikosJsTools.utils.formatEther(elem.value)))
 
   return { 
     total: formatBigNumber(

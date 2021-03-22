@@ -71,16 +71,10 @@ class Header extends Component {
   renderNetworkName() {
     const { currentWalletInfo } = this.props;
     switch (currentWalletInfo.networkId) {
-      case '1':
-        return 'MAINNET';
-      case '3':
-        return 'ROPSTEN';
-      case '4':
-        return 'RINKEBY';
-      case '42':
-        return 'KOVAN';
-      case '97':
+      case '56':
         return 'BSC';
+      case '97':
+        return 'BSC-TESTNET';
       default:
         return 'BSC';
     }

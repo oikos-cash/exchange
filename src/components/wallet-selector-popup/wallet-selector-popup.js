@@ -12,7 +12,7 @@ import { getCurrentWalletInfo } from '../../ducks/';
 import { getExtensionUri } from '../../utils/browserUtils';
 //import { getEthereumNetwork } from '../../utils/metamaskTools';
 import { INFURA_JSON_RPC_URLS } from '../../utils/networkUtils';
-import synthetixJsTools from '../../synthetixJsTool';
+import oikosJsTools from '../../oikosJsTool';
 
 import styles from './wallet-selector-popup.module.scss';
 import { getDefaultProvider } from 'ethers';
@@ -46,11 +46,11 @@ class WalletSelectorPopup extends Component {
   registerMetamaskAddressListener = () => {
     const listener = throttle(this.onMetamaskAddressChange, 2000);
     if (
-      synthetixJsTools.signer &&
-      synthetixJsTools.signer.provider &&
-      synthetixJsTools.signer.provider._web3Provider
+      oikosJsTools.signer &&
+      oikosJsTools.signer.provider &&
+      oikosJsTools.signer.provider._web3Provider
     ) {
-      synthetixJsTools.signer.provider._web3Provider.publicConfigStore.on(
+      oikosJsTools.signer.provider._web3Provider.publicConfigStore.on(
         'update',
         listener
       );
@@ -65,7 +65,7 @@ class WalletSelectorPopup extends Component {
     ) {
       return;
     }
-    const newSelectedAddress = await synthetixJsTools.signer.getNextAddresses();
+    const newSelectedAddress = await oikosJsTools.signer.getNextAddresses();
     setSelectedWallet({
       availableWallets: newSelectedAddress,
       selectedWallet: newSelectedAddress[0],
@@ -80,19 +80,19 @@ class WalletSelectorPopup extends Component {
       try {
         //const { name, networkId } = await getEthereumNetwork();
         const name = 'bsc';
-        const networkId = 97;
+        const networkId = '56';
          
         const signerConfig =
           walletType === 'Coinbase'
             ? {
-                appName: 'Synthetix.Exchange',
-                appLogoUrl: `${window.location.origin}/images/synthetix-logo-small.png`,
+                appName: 'Oikos.Exchange',
+                appLogoUrl: `${window.location.origin}/images/oikos-logo-small.png`,
                 jsonRpcUrl: INFURA_JSON_RPC_URLS[networkId],
                 networkId,
               }
             : {};
-        const signer = new synthetixJsTools.signers[walletType](signerConfig);
-        synthetixJsTools.setContractSettings({
+        const signer = new oikosJsTools.signers[walletType](signerConfig);
+        oikosJsTools.setContractSettings({
           networkId,
           signer,
         });
@@ -114,14 +114,14 @@ class WalletSelectorPopup extends Component {
                 if (window.ethereum) {
                   await window.ethereum.enable();
                 }
-                synthetixJsTools.setContractSettings({
+                oikosJsTools.setContractSettings({
                   signer,
                   networkId,
-                  provider: getDefaultProvider('https://data-seed-prebsc-2-s3.binance.org:8545'),//synthetixJsTools.synthetixJs.ethers.getDefaultProvider(
+                  provider: getDefaultProvider('https://data-seed-prebsc-2-s3.binance.org:8545'),//oikosJsTools.oikosJs.ethers.getDefaultProvider(
                   //  name && name.toLowerCase()
                   //),
                 });
-                const accounts = await synthetixJsTools.signer.getNextAddresses();
+                const accounts = await oikosJsTools.signer.getNextAddresses();
 
                 // If we do have a wallet address, we save it
                 if (accounts.length > 0) {
@@ -147,7 +147,7 @@ class WalletSelectorPopup extends Component {
             break;
 
           case 'Coinbase': {
-            const accounts = await synthetixJsTools.signer.getNextAddresses();
+            const accounts = await oikosJsTools.signer.getNextAddresses();
             // If we do have a wallet address, we save it
             if (accounts && accounts.length > 0) {
               connectToWallet({

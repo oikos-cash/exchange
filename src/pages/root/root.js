@@ -48,7 +48,7 @@ import {
   updateExchangeFeeRate,
 } from '../../ducks/wallet';
 import { getEthereumNetwork } from '../../utils/metamaskTools';
-import synthetixJsTools from '../../synthetixJsTool';
+import oikosJsTools from '../../oikosJsTool';
 import { getGasAndSpeedInfo } from '../../utils/ethUtils';
 
 import styles from './root.module.scss';
@@ -69,19 +69,19 @@ class Root extends Component {
     let formattedSynthRates = {};
     try {
       const [synthRates, ethRate] = await Promise.all([
-        synthetixJsTools.synthetixJs.ExchangeRates.ratesForCurrencies(
+        oikosJsTools.oikosJs.ExchangeRates.ratesForCurrencies(
           availableSynths.map(synth =>
-            synthetixJsTools.getUtf8Bytes(synth.name)
+            oikosJsTools.getUtf8Bytes(synth.name)
           )
         ),
-        synthetixJsTools.synthetixJs.ExchangeRates.rateForCurrency(synthetixJsTools.getUtf8Bytes("sBNB")),  
+        oikosJsTools.oikosJs.ExchangeRates.rateForCurrency(oikosJsTools.getUtf8Bytes("sBNB")),  
       ]);
       synthRates.forEach((rate, i) => {
         formattedSynthRates[availableSynths[i].name] = Number(
-          synthetixJsTools.synthetixJs.utils.formatEther(rate)
+          oikosJsTools.oikosJs.utils.formatEther(rate)
         );
       });
-      const formattedEthRate = synthetixJsTools.synthetixJs.utils.formatEther(
+      const formattedEthRate = oikosJsTools.oikosJs.utils.formatEther(
         ethRate
       );
       updateExchangeRates(formattedSynthRates, formattedEthRate);
@@ -99,9 +99,9 @@ class Root extends Component {
 
   async updateExchangeFeeRate() {
     const { updateExchangeFeeRate } = this.props;
-    const { formatEther } = synthetixJsTools.synthetixJs.utils;
+    const { formatEther } = oikosJsTools.oikosJs.utils;
     try {
-      const exchangeFeeRate = await synthetixJsTools.synthetixJs.FeePool.exchangeFeeRate();
+      const exchangeFeeRate = await oikosJsTools.oikosJs.FeePool.exchangeFeeRate();
       updateExchangeFeeRate(100 * Number(formatEther(exchangeFeeRate)));
     } catch (e) {
       console.log(e);
@@ -117,8 +117,8 @@ class Root extends Component {
       .map(synth => synth.name);
     const results = await Promise.all(
       inverseSynths.map(synth =>
-        synthetixJsTools.synthetixJs.ExchangeRates.rateIsFrozen(
-          synthetixJsTools.getUtf8Bytes(synth)
+        oikosJsTools.oikosJs.ExchangeRates.rateIsFrozen(
+          oikosJsTools.getUtf8Bytes(synth)
         )
       )
     );
@@ -145,11 +145,11 @@ class Root extends Component {
     if (currentScreen === 'appDown') return;
     toggleLoadingScreen(true);
     setInterval(this.refreshData, 3 * 1000);
-    const networkId = 97;
-    const provider = getDefaultProvider('https://data-seed-prebsc-2-s3.binance.org:8545');
-    synthetixJsTools.setContractSettings({ networkId, provider });
-    // We remove all the synths which aren't considered as assets (eg: XDR)
-    const allSynths = synthetixJsTools.synthetixJs.contractSettings.synths.filter(
+    const networkId = 56;
+    const provider = getDefaultProvider('https://bsc-dataseed.binance.org');
+    oikosJsTools.setContractSettings({ networkId, provider });
+    // We remove all the synths which aren't considered as assets (eg: ODR)
+    const allSynths = oikosJsTools.oikosJs.contractSettings.synths.filter(
       synth => synth.asset
     );
     setAvailableSynths(allSynths);

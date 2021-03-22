@@ -67,10 +67,10 @@ class SynthPicker extends Component {
               <div>
                 <img
                   src={`/images/synths/${
-                    synthToExchange ? synthToExchange.name : 'sUSD'
+                    synthToExchange ? synthToExchange.name : 'oUSD'
                   }-icon.svg`}
                 />
-                {synthToExchange ? synthToExchange.name : 'sUSD'}
+                {synthToExchange ? synthToExchange.name : 'oUSD'}
               </div>
               {balances ? (
                 <div>

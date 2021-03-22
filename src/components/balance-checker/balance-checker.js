@@ -15,7 +15,7 @@ import { setSynthToExchange } from '../../ducks/synths';
 import { setWalletBalances } from '../../ducks/wallet';
 import { toggleLoadingScreen, toggleDepotPopup } from '../../ducks/ui';
 
-import synthetixJsTools from '../../synthetixJsTool';
+import oikosJsTools from '../../oikosJsTool';
 import { formatBigNumber } from '../../utils/converterUtils';
 import RateList from '../rate-list';
 import SynthPicker from '../synth-picker';
@@ -56,11 +56,11 @@ class BalanceChecker extends Component {
       ethRate,
     } = this.props;
     const {
-      synthetixJs,
+      oikosJs,
       initialized,
       provider,
       getUtf8Bytes,
-    } = synthetixJsTools;
+    } = oikosJsTools;
     if (!initialized || !currentWalletInfo || !currentWalletInfo.selectedWallet)
       return;
     const { selectedWallet } = currentWalletInfo;
@@ -69,17 +69,17 @@ class BalanceChecker extends Component {
     const ethBalanceValue = ethBalance * ethRate;
     const balances = await Promise.all(
       availableSynths.map(synth => {
-        return synthetixJs[synth.name].balanceOf(selectedWallet);
+        return oikosJs[synth.name].balanceOf(selectedWallet);
       })
     );
 
     const synthsBalance = {};
     const totalBalance = await Promise.all(
       balances.map((balance, i) => {
-        return synthetixJs.ExchangeRates.effectiveValue(
+        return oikosJs.ExchangeRates.effectiveValue(
           getUtf8Bytes(availableSynths[i].name),
           balance,
-          getUtf8Bytes('sUSD')
+          getUtf8Bytes('oUSD')
         );
       })
     );
@@ -164,8 +164,8 @@ class BalanceChecker extends Component {
   renderTotalBalance() {
     const { totalBalance, ethBalance } = this.state;
 
-    //const proxyERC20sUSDAddress = synthetixJsTools.synthetixJs
-    //  ? synthetixJsTools.synthetixJs.contractSettings.addressList.ProxyERC20sUSD
+    //const proxyERC20oUSDAddress = oikosJsTools.oikosJs
+    //  ? oikosJsTools.oikosJs.contractSettings.addressList.ProxyERC20oUSD
     //  : '';
     return (
       <table cellPadding="0" cellSpacing="0" className={styles.table}>
@@ -205,10 +205,10 @@ class BalanceChecker extends Component {
                 onClick={this.showDepotPopup}
                 className={`${styles.balanceCheckerButton} ${styles.balanceCheckerButtonWhite}`}
               >
-                Buy sUSD with BNB
+                Buy oUSD with BNB
               </button>
               <a
-                href={`https://uniswap.exchange/swap/${proxyERC20sUSDAddress}`}
+                href={`https://uniswap.exchange/swap/${proxyERC20oUSDAddress}`}
                 target="_blank"
                 className={`${styles.balanceCheckerButton} ${styles.balanceCheckerButtonWhite} ${styles.balanceCheckerAnchor}`}
               >

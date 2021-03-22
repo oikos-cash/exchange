@@ -10,15 +10,13 @@ import {
   loadingScreenIsVisible,
 } from '../../ducks';
 
-import { getTransactions } from '../../utils/synthetixApi';
+import { getTransactions } from '../../utils/oikosApi';
 import Container from '../container';
 
 import styles from './transactions-table.module.scss';
 
 const ETHERSCAN_URLS = {
-  1: 'https://testnet.bscscan.com/tx/',
-  3: 'https://ropsten.etherscan.io/tx/',
-  42: 'https://kovan.etherscan.io/tx/',
+  56: 'https://bscscan.com/tx/',
   97: 'https://testnet.bscscan.com/tx/',
 };
 

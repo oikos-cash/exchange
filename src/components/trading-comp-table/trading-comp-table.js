@@ -83,10 +83,10 @@ class TradingComp extends Component {
                 <h3>Tier</h3>
               </th>
               <th>
-                <h3>Starting balance (sUSD)</h3>
+                <h3>Starting balance (oUSD)</h3>
               </th>
               <th>
-                <h3>Current balance (sUSD)</h3>
+                <h3>Current balance (oUSD)</h3>
               </th>
               <th>
                 <h3>Primary Synth</h3>

@@ -12,7 +12,7 @@ const AppDown = () => {
     >
       <div>
         <h1 style={{}}>
-          Synthetix.Exchange is currently unavailable due to upgrades.
+          Oikos.Exchange is currently unavailable due to upgrades.
         </h1>
         <h2 style={{ color: '#4a4762' }}>
           Sorry for the inconvenience, it shall be back shortly.
