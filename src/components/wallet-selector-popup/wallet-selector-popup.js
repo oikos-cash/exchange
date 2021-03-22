@@ -15,7 +15,6 @@ import { INFURA_JSON_RPC_URLS } from '../../utils/networkUtils';
 import oikosJsTools from '../../oikosJsTool';
 
 import styles from './wallet-selector-popup.module.scss';
-import { getDefaultProvider } from 'ethers';
 
 const WALLET_TYPES = ['Metamask'/*, 'Trezor', 'Ledger'*/];
 
@@ -81,7 +80,7 @@ class WalletSelectorPopup extends Component {
         //const { name, networkId } = await getEthereumNetwork();
         const name = 'bsc';
         const networkId = '56';
-         
+
         const signerConfig =
           walletType === 'Coinbase'
             ? {
@@ -117,7 +116,6 @@ class WalletSelectorPopup extends Component {
                 oikosJsTools.setContractSettings({
                   signer,
                   networkId,
-                  provider: getDefaultProvider('https://data-seed-prebsc-2-s3.binance.org:8545'),//oikosJsTools.oikosJs.ethers.getDefaultProvider(
                   //  name && name.toLowerCase()
                   //),
                 });

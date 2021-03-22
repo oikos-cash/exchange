@@ -102,12 +102,11 @@ class TransactionStatusPopup extends Component {
     const { currentWalletInfo } = this.props;
     const { transactionHash, networkId } = currentWalletInfo;
     let networkName = SUPPORTED_NETWORKS[networkId];
-    networkName = (networkName && networkName.toLowerCase()) || '';
-    if (networkName === 'mainnet') {
-      networkName = '';
-    }
+    networkName = (networkName && networkName.toLowerCase()) || 'bsc';
     window.open(
-      `https://testnet.bscscan.com/tx/${transactionHash}`
+     `https://${
+        networkName === 'bsc' ? '' :  'testnet.'
+      }bscscan.com/tx/${transactionHash}`
     );
   }
 

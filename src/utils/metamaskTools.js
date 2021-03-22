@@ -1,15 +1,19 @@
 import throttle from 'lodash/throttle';
 
 export const SUPPORTED_NETWORKS = {
-  1: 'MAINNET',
-  3: 'ROPSTEN',
-  4: 'RINKEBY',
-  42: 'KOVAN',
+  56: 'bsc',
+  97: 'bsctestnet',
 };
 
 export async function getEthereumNetwork() {
-  return await new Promise(function(resolve, reject) {
-    if (!window.web3) resolve({ name: 'MAINNET', networkId: '56' });
+  return await new Promise(function (resolve) {
+    if (!window.web3) {
+      return resolve({ name: 'bsc', networkId: '56' });
+    }
+    return resolve({ name: 'bsc', networkId: '56' });
+    // TODO: window.web3 is deprecated
+    // FIXME
+    /*
     window.web3.version.getNetwork((err, networkId) => {
       if (err) {
         reject(err);
@@ -18,6 +22,7 @@ export async function getEthereumNetwork() {
         resolve({ name, networkId });
       }
     });
+    */
   });
 }
 

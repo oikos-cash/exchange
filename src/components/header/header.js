@@ -38,7 +38,7 @@ class Header extends Component {
       testnetPopupIsVisible,
       currentWalletInfo,
     } = this.props;
-    if (!currentWalletInfo.networkId || currentWalletInfo.networkId === '1')
+    if (!currentWalletInfo.networkId || currentWalletInfo.networkId === '56')
       return;
     toggleTestnetPopup(!testnetPopupIsVisible);
   }
@@ -72,11 +72,11 @@ class Header extends Component {
     const { currentWalletInfo } = this.props;
     switch (currentWalletInfo.networkId) {
       case '56':
-        return 'BSC';
+        return 'bsc';
       case '97':
-        return 'BSC-TESTNET';
+        return 'bsctestnet';
       default:
-        return 'BSC';
+        return 'bsc';
     }
   }
 
@@ -149,7 +149,7 @@ class Header extends Component {
           {selectedWallet ? (
             <WalletAddressBox
               wallet={selectedWallet}
-              network={currentWalletInfo.networkId == 97 ? 'bsc' : 'mainnet'}
+              network={currentWalletInfo.networkId == 97 ? 'bsctestnet' : 'bsc'}
             />
           ) : (
             <button

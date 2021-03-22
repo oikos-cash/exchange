@@ -23,8 +23,6 @@ import FeedbackPopup from '../../components/feedback-popup';
 import WalkthroughPopup from '../../components/walkthrough-popup';
 import LoadingScreen from '../../components/loading-screen';
 
-import {getDefaultProvider} from 'ethers';
-
 import {
   getCurrentScreen,
   getAvailableSynths,
@@ -74,7 +72,7 @@ class Root extends Component {
             oikosJsTools.getUtf8Bytes(synth.name)
           )
         ),
-        oikosJsTools.oikosJs.ExchangeRates.rateForCurrency(oikosJsTools.getUtf8Bytes("oBNB")),  
+        oikosJsTools.oikosJs.ExchangeRates.rateForCurrency(oikosJsTools.getUtf8Bytes("oBNB")),
       ]);
       synthRates.forEach((rate, i) => {
         formattedSynthRates[availableSynths[i].name] = Number(
@@ -144,11 +142,10 @@ class Root extends Component {
     } = this.props;
     if (currentScreen === 'appDown') return;
     toggleLoadingScreen(true);
-    setInterval(this.refreshData, 3 * 1000);
-    const networkId = 56;
-    const provider = getDefaultProvider('https://bsc-dataseed.binance.org');
-    oikosJsTools.setContractSettings({ networkId, provider });
-    // We remove all the synths which aren't considered as assets (eg: ODR)
+    setInterval(this.refreshData, 30 * 1000);
+    const { networkId } = await getEthereumNetwork();
+    oikosJsTools.setContractSettings({ networkId });
+    // We remove all the synths which aren't considered as assets (eg: XDR)
     const allSynths = oikosJsTools.oikosJs.contractSettings.synths.filter(
       synth => synth.asset
     );
