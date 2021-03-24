@@ -6,7 +6,7 @@
     "@babel/core": "7.1.0",
     "@bugsnag/js": "6.2.0",
     "@bugsnag/plugin-react": "6.2.0",
-    "@oikos/oikos-js": "^0.6.6",
+    "@oikos/oikos-js": "^0.6.25",
     "@svgr/webpack": "2.4.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.6.0",
