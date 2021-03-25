@@ -16,7 +16,8 @@ import oikosJsTools from '../../oikosJsTool';
 
 import styles from './wallet-selector-popup.module.scss';
 
-const WALLET_TYPES = ['Metamask'/*, 'Trezor', 'Ledger'*/];
+// prettier-ignore
+const WALLET_TYPES = ['Metamask', 'BSCWallet' /*, 'Trezor', 'Ledger'*/];
 
 class WalletSelectorPopup extends Component {
   constructor() {
@@ -56,7 +57,37 @@ class WalletSelectorPopup extends Component {
     }
   };
 
+  registerBSCWalletAddressListener = () => {
+    const listener = throttle(this.onBSCWalletAddressChange, 2000);
+    if (
+      oikosJsTools.signer &&
+      oikosJsTools.signer.provider &&
+      oikosJsTools.signer.provider._web3Provider
+    ) {
+      oikosJsTools.signer.provider._web3Provider.publicConfigStore.on(
+        'update',
+        listener
+      );
+    }
+  };
+
+
   onMetamaskAddressChange = async data => {
+    const { currentWalletInfo, setSelectedWallet } = this.props;
+    if (
+      currentWalletInfo.selectedWallet.toLocaleLowerCase() ===
+      data.selectedAddress.toLowerCase()
+    ) {
+      return;
+    }
+    const newSelectedAddress = await oikosJsTools.signer.getNextAddresses();
+    setSelectedWallet({
+      availableWallets: newSelectedAddress,
+      selectedWallet: newSelectedAddress[0],
+    });
+  };
+
+  onBSCWalletAddressChange = async data => {
     const { currentWalletInfo, setSelectedWallet } = this.props;
     if (
       currentWalletInfo.selectedWallet.toLocaleLowerCase() ===
@@ -143,6 +174,53 @@ class WalletSelectorPopup extends Component {
               }
             }
             break;
+
+            case 'BSCWallet':
+              if (!window.BinanceChain && extensionUri) {
+                window.open(extensionUri);
+              } else {
+                // If Metamask is not set on supported network, we send an unlocked reason
+                if (!name) {
+                  connectToWallet({
+                    walletType,
+                    unlocked: false,
+                    unlockReason: 'BSCWalletNotMainNet',
+                  });
+                  //Otherwise we get the current wallet address
+                } else {
+                  if (window.BinanceChain) {
+                    await window.BinanceChain.enable();
+                  }
+                  oikosJsTools.setContractSettings({
+                    signer,
+                    networkId,
+                    //  name && name.toLowerCase()
+                    //),
+                  });
+                  const accounts = await oikosJsTools.signer.getNextAddresses();
+  
+                  // If we do have a wallet address, we save it
+                  if (accounts.length > 0) {
+                    connectToWallet({
+                      walletType,
+                      availableWallets: accounts,
+                      selectedWallet: accounts[0],
+                      unlocked: true,
+                      networkId,
+                    });
+                    this.closePopup();
+                    this.registerBSCWalletAddressListener();
+                  } else {
+                    // Otherwise we send an unlocked reason
+                    connectToWallet({
+                      walletType,
+                      unlocked: false,
+                      unlockReason: 'BSCWalletNoAccounts',
+                    });
+                  }
+                }
+              }
+              break;
 
           case 'Coinbase': {
             const accounts = await oikosJsTools.signer.getNextAddresses();
