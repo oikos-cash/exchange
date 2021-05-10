@@ -2,7 +2,7 @@ import oikosJsTools from '../oikosJsTool';
 import * as data from './gas.json';
 
 export const DEFAULT_GAS_LIMIT = 1800000;
-export const DEFAULT_GAS_PRICE = 500000000;
+export const DEFAULT_GAS_PRICE = 1000000000;
 export const GWEI = 1000000000;
 
 const getTransactionPrice = (gwei, ethPrice) => {
